@@ -17,6 +17,7 @@ defaults[test,cucumber]:
 env_vars:
   one: ONE
   nope: HELLO
+  two: TWO_ENV_VAR_NAME
 
 env_vars[production]:
   one: UNO

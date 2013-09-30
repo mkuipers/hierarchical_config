@@ -90,3 +90,13 @@ end
 ENV['UNO']='value_for_uno'
 assert( HierarchicalConfig.load_config( 'environment_variable_tests', TEST_CONFIG_DIR, 'production' ).one == 'value_for_uno', 'now with it set we should see the value')
 
+
+#Overriding config values
+
+##Without overriding:
+env_config = HierarchicalConfig.load_config( 'environment_variable_tests', TEST_CONFIG_DIR, 'development' )
+assert(env_config.two == 'two', 'without setting the environment variable, there should be the appropriate value for #two')
+## When overriden by an env var
+ENV['TWO_ENV_VAR_NAME'] = 'two_env_value'
+env_config = HierarchicalConfig.load_config( 'environment_variable_tests', TEST_CONFIG_DIR, 'development' )
+assert(env_config.two == 'two_env_value', 'when the env var has been set, the value should be overridden')
